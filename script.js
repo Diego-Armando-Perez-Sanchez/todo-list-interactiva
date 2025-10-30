@@ -1,17 +1,11 @@
-// Base de datos de tareas en memoria
+// VERSIÓN FINAL Y COMBINADA de script.js
 const tasks = [];
-
-// Referencias a elementos del DOM
 const taskInput = document.getElementById('taskInput');
 const addButton = document.getElementById('addButton');
 const taskList = document.getElementById('taskList');
 
-// (Funciones a implementar por el equipo)
-
-// ... código existente ...
-
 function renderTasks() {
-    taskList.innerHTML = ""; // Limpiar la lista antes de volver a dibujarla
+    taskList.innerHTML = "";
     for (const task of tasks) {
         const li = document.createElement('li');
         li.textContent = task;
@@ -19,6 +13,14 @@ function renderTasks() {
     }
 }
 
-// Simulación: Añade esto para probar que funciona
-tasks.push("Tarea de prueba 1", "Tarea de prueba 2");
-renderTasks();
+function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+        tasks.push(taskText);
+        taskInput.value = "";
+        renderTasks(); // ¡Llamamos a renderTasks() para actualizar la pantalla!
+    }
+}
+
+addButton.addEventListener('click', addTask);
+renderTasks(); // Llamada inicial para mostrar tareas si las hubiera
